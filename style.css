@@ -1,0 +1,19 @@
+#logo {
+  width: 40%;
+  margin: 40px 30%;
+}
+
+.cls-1 {
+  fill: #fff;
+}
+.cls-2 {
+  fill: #420;
+}
+.cls-3 {
+  fill: #000;
+}
+
+#logo svg {
+  width: 100%;
+  height: auto;
+}
