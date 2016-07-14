@@ -17,3 +17,30 @@
   width: 100%;
   height: auto;
 }
+
+svg g,
+svg path {
+  transform-origin: center;
+}
+
+#moustache-left {
+  transform-origin: top right;
+}
+
+#moustache-right {
+  transform-origin: top left;
+}
+
+#eyebrow-left .eyebrow-outer {
+  transform-origin: top left;
+}
+#eyebrow-left .eyebrow-inner {
+  transform-origin: top left;
+}
+
+#eyebrow-right .eyebrow-outer {
+  transform-origin: top left;
+}
+#eyebrow-right .eyebrow-inner {
+  transform-origin: top right;
+}
