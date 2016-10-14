@@ -53,3 +53,20 @@ function eyebrowsDown() {
   })
   .velocity('reverse', {delay: 1000, duration: 600});
 }
+
+// ScrollMagic fun.
+// init controller
+var controller = new ScrollMagic.Controller();
+
+// setup pin
+var pin = new ScrollMagic.Scene({triggerElement: "#screen-1", triggerHook: 0.85, duration: "200%"})
+.setPin("#logo")
+.addIndicators({name: "pin logo"}) // add indicators (requires plugin)
+.addTo(controller);
+
+// setup zoom
+var zoom = new ScrollMagic.Scene({triggerElement: "#screen-2"})
+  // .setTween(tween)
+  .setVelocity("#logo", {rotateZ: "6deg"}, {duration: 200})
+  .addIndicators({name: "zoom logo"}) // add indicators (requires plugin)
+  .addTo(controller);
