@@ -3,6 +3,7 @@ body {
   height: 100%;
   width: 100%;
 }
+
 #preface {
   width: 100%;
   height: 5vh;
@@ -37,29 +38,6 @@ body {
 svg g,
 svg path {
   transform-origin: center;
-}
-
-#moustache-left {
-  transform-origin: right top;
-}
-
-#moustache-right {
-  transform-origin: left top;
-}
-
-#eyebrow-left .eyebrow-outer {
-  transform-origin: left top;
-}
-#eyebrow-left .eyebrow-inner {
-  transform-origin: left top;
-}
-
-#eyebrow-right .eyebrow-outer {
-  transform-origin: left top;
-}
-#eyebrow-right .eyebrow-inner {
-  transform-origin: right top;
-  border: 1px dotted red;
 }
 
 .screen {

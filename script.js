@@ -1,70 +1,13 @@
-$('#drupglass').click(function() {
-  smile();
-  eyebrowsDown();
-});
+// Set timeline for moving right eyebrows down
+var eyeBrowRightDown = new TimelineMax();
+eyeBrowRightDown.add(TweenMax.to("#eyebrow-right .eyebrow-inner", 0.5, {rotation:"35deg", x: "+=40px", transformOrigin: "right top"}), 0);
+eyeBrowRightDown.add(TweenMax.to("#eyebrow-right .eyebrow-outer", 0.5, {rotation: "-15deg", x: "-=40px", transformOrigin: "left top"}), 0);
+eyeBrowRightDown.add(TweenMax.to("#eyebrow-right", 0.5, {rotation: "-8deg", x: "+=40px", y: "+=100px", transformOrigin: "center center"}), 0);
 
-// Do a "smile" with velocityjs
-function smile() {
-  $('#moustache-left')
-  .velocity({
-    rotateZ: "4deg",
-    translateY: "+=2",
-    translateX: "+=15"
-  }, {
-    duration: 900,
-    easing: "ease-out"
-  })
-  .velocity('reverse', {delay: 400, duration: 400});
-  $('#moustache-right')
-  .velocity({
-    rotateZ: "-5.5deg",
-  }, {
-    duration: 900,
-    easing: "ease-out"
-  })
-  .velocity('reverse', {delay: 400, duration: 400});
-}
-
-// Move eyebrows down with velocityjs
-function eyebrowsDown() {
-  $('#eyebrow-right .eyebrow-inner')
-  .velocity({
-    rotateZ: "35deg",
-    translateX: "+=40px"
-  }, {
-    duration: 100,
-    easing: "ease-in-out"
-  })
-  .velocity('reverse', {delay: 1100, duration: 500});
-  $('#eyebrow-right .eyebrow-outer')
-  .velocity({
-    rotateZ: "-15deg",
-    translateX: "-=40px",
-  }, {
-    duration: 100,
-    easing: "ease-in-out"
-  })
-  .velocity('reverse', {delay: 1100, duration: 500});
-  $('#eyebrow-right')
-  .velocity({
-    translateX: "+=40px",
-    translateY: "+=80px",
-    rotateZ: "-8deg"
-  }, {
-    duration: 200
-  })
-  .velocity('reverse', {delay: 1000, duration: 600});
-}
-
-// Try some mimic with gsap
-// Superbasic eyebrow rotation
-var tween = new TweenMax.to('#eyebrow-right .eyebrow-inner', 0.5, {rotation:"35deg", x: "+=40px", transformOrigin: "right top"});
-
-// Combine multiple things into one object
-var eyeBrowRightTimeline = new TimelineMax({});
-eyeBrowRightTimeline.add(tween, 0);
-eyeBrowRightTimeline.add(TweenMax.to("#eyebrow-right .eyebrow-outer", 0.5, {rotation: "-15deg", x: "-=40px", transformOrigin: "left top"}), 0);
-eyeBrowRightTimeline.add(TweenMax.to("#eyebrow-right", 0.5, {rotation: "-8deg", x: "+=40px", y: "+=80px",transformOrigin: "center center"}), 0);
+// Set another timeline for straighten the moustache
+var moustacheStraighten = new TimelineMax();
+moustacheStraighten.add(TweenMax.to("#moustache-left", 0.5, {rotation: "4deg", x: "+=15", y: "+=2", transformOrigin: "right top"}), 0);
+moustacheStraighten.add(TweenMax.to("#moustache-right", 0.5, {rotation: "-5.5deg", transformOrigin: "left top"}), 0);
 
 // ScrollMagic fun.
 // init controller
@@ -81,12 +24,17 @@ var pin = new ScrollMagic.Scene({triggerElement: "#screen-1", triggerHook: 0.85,
 */
 
 // Setup a zoom on logo
-var zoom = new ScrollMagic.Scene({triggerElement: "#screen-2", offset: "50px"})
-  .setTween("#logo", 0.5, {scale: 1.4, rotation: "12deg"})
+var zoom = new ScrollMagic.Scene({triggerElement: "#screen-1", triggerHook: "onLeave"})
+  .setTween("#logo", 0.5, {scale: 1.6, rotation: "6deg", ease: Elastic.easeOut})
   .addIndicators({name: "zoom logo"}) // add indicators (requires plugin)
   .addTo(controller);
 
-var gsapTest = new ScrollMagic.Scene({triggerElement: "#screen-2", duration: 50})
-  .setTween(eyeBrowRightTimeline)
-  .addIndicators({name: "gsapTest yeah"})
+var eyeBrowScene = new ScrollMagic.Scene({triggerElement: "#screen-2", triggerHook: 0.75, duration: 150})
+  .setTween(eyeBrowRightDown)
+  .addIndicators({name: "eyebrows"})
   .addTo(controller);
+
+var moustacheScene = new ScrollMagic.Scene({triggerElement: "#screen-2", triggerHook: 0.75, duration: 50})
+  .setTween(moustacheStraighten)
+  .addIndicators({name: "moustache"})
+  .addTo(controller)
