@@ -9,7 +9,9 @@ body {
   background-color: #5D754F;
 }
 #welcome {
-  background: #AAA;
+  background: rgba(120, 120, 120, 0.6);
+  position: fixed;
+  z-index: 9999;
 }
 #logo {
   width: 20%;
@@ -38,25 +40,26 @@ svg path {
 }
 
 #moustache-left {
-  transform-origin: top right;
+  transform-origin: right top;
 }
 
 #moustache-right {
-  transform-origin: top left;
+  transform-origin: left top;
 }
 
 #eyebrow-left .eyebrow-outer {
-  transform-origin: top left;
+  transform-origin: left top;
 }
 #eyebrow-left .eyebrow-inner {
-  transform-origin: top left;
+  transform-origin: left top;
 }
 
 #eyebrow-right .eyebrow-outer {
-  transform-origin: top left;
+  transform-origin: left top;
 }
 #eyebrow-right .eyebrow-inner {
-  transform-origin: top right;
+  transform-origin: right top;
+  border: 1px dotted red;
 }
 
 .screen {
